@@ -19,10 +19,11 @@ from utils.helper import create_folder_if_not_exists
 
 
 class MainTrain(BaseTrain):
-    def __init__(self, model: BaseModel, data_loader: BaseDataLoader):
+    def __init__(self, model: BaseModel, data_loader: BaseDataLoader, iters: int = 10000):
         super().__init__(model, data_loader)
+        self.iters = iters
 
-    def train(self, iters: int = 10000):
+    def train(self):
         self.model.compile_model()
         metrics = Metrics(
             self.data_loader, model=self.model, dataset_path=PATHS.VAL_PATH
@@ -47,7 +48,7 @@ class MainTrain(BaseTrain):
             f"Training settings: input shape: {self.model.input_shape}, network: {self.model.get_model_name()}"
         )
 
-        for i in tqdm(range(iters)):
+        for i in tqdm(range(self.iters)):
             x, y = next(self.data_loader.get_train_data())
             loss = self.model.model.train_on_batch(x, y)
             losses.append(loss)
@@ -90,6 +91,7 @@ if __name__ == "__main__":
         description="Train Siamese Networks with triplet semi-hard loss"
     )
     parser.add_argument("image_size", help="The size of images (224 or 1024)")
+    parser.add_argument("iters", type=int, help="Number of iterations to train for")
     args = parser.parse_args()
 
     try:
@@ -106,5 +108,5 @@ if __name__ == "__main__":
         input_shape=input_shape, augmentation=True, batch_size=16
     )
     model = ResNet50V2Model(input_shape=input_shape, freeze=False, imagenet=True)
-    trainer = MainTrain(model=model, data_loader=data_loader)
+    trainer = MainTrain(model=model, data_loader=data_loader, iters=args.iters)
     trainer.train()
