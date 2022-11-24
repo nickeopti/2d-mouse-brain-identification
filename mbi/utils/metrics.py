@@ -127,3 +127,26 @@ class Metrics:
         print(f"MAE: {self.mae}")
 
         return self.mae
+
+    def predict(self, brain_slice_path):
+        atlas_embeddings = self._get_embedding(
+            self.data_loader.atlas_images, self.model.get_model()
+        )
+        image = load_image(
+            brain_slice_path, input_shape=self.data_loader.input_shape
+        )
+        brain_embedding = self._get_embedding(
+            {'image': image}, self.model.get_model()
+        )['image']
+        predicted = {}
+        for atlas_no, embedding in atlas_embeddings.items():
+            predicted[atlas_no] = euclidean_distance_numpy(
+                (embedding, brain_embedding)
+            )
+        # sort based on euclidean distance
+        sorted_distance = list(
+            dict(
+                sorted(predicted.items(), key=lambda item: item[1], reverse=False)
+            ).keys()
+        )
+        return sorted_distance

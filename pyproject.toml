@@ -23,3 +23,4 @@ packages = ["mbi"]
 [project.scripts]
 train = "mbi.trainers.train:main"
 evaluate = "mbi.evaluate:main"
+predict = "mbi.predict:main"
