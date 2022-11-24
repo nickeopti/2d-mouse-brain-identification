@@ -1,9 +1,9 @@
-from utils.image import (
+from mbi.utils.image import (
     load_image,
     get_image_paths,
 )
 import os
-from paths import PATHS
+from mbi.paths import PATHS
 
 
 class BaseDataLoader(object):

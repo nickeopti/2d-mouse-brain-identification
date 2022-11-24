@@ -2,12 +2,12 @@ import os.path
 import numpy as np
 import time
 
-from data_loader.base_data_loader import BaseDataLoader
-from models.base_model import BaseModel
+from mbi.data_loader.base_data_loader import BaseDataLoader
+from mbi.models.base_model import BaseModel
 from tensorflow.keras.models import Model
-from utils.image import load_image, get_image_paths
-from utils.distance import euclidean_distance_numpy
-from utils.visualization import save_top_n_predictions
+from mbi.utils.image import load_image, get_image_paths
+from mbi.utils.distance import euclidean_distance_numpy
+from mbi.utils.visualization import save_top_n_predictions
 
 
 class Metrics:

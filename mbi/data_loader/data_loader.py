@@ -1,7 +1,9 @@
-from data_loader.base_data_loader import BaseDataLoader
+from mbi.data_loader.base_data_loader import BaseDataLoader
 import numpy as np
 import random
 import imgaug.augmenters as iaa
+
+from mbi.data_loader.base_data_loader import BaseDataLoader
 
 
 class TripletDataLoader(BaseDataLoader):

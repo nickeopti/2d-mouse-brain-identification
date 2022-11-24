@@ -5,9 +5,9 @@ sys.path.insert(0, os.getcwd())
 import random
 from matplotlib import pyplot as plt
 from typing import List
-from data_loader.base_data_loader import BaseDataLoader
-from data_loader.data_loader import TripletDataLoader
-from utils.helper import create_folder_if_not_exists
+from mbi.data_loader.base_data_loader import BaseDataLoader
+from mbi.data_loader.data_loader import TripletDataLoader
+from mbi.utils.helper import create_folder_if_not_exists
 
 
 def save_augmented_images(data_loader: BaseDataLoader):

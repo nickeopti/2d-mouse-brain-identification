@@ -7,19 +7,19 @@ import numpy as np
 
 sys.path.insert(0, os.getcwd())
 
-from trainers.base_trainer import BaseTrain
-from models.base_model import BaseModel
-from data_loader.base_data_loader import BaseDataLoader
-from data_loader.data_loader import TripletDataLoader
-from models.resnet50 import ResNet50V2Model
-from utils.metrics import Metrics
-from paths import PATHS
-from utils.cuda import set_cuda_memory
-from utils.helper import create_folder_if_not_exists
+from mbi.trainers.base_trainer import BaseTrain
+from mbi.models.base_model import BaseModel
+from mbi.data_loader.base_data_loader import BaseDataLoader
+from mbi.data_loader.data_loader import TripletDataLoader
+from mbi.models.resnet50 import ResNet50V2Model
+from mbi.utils.metrics import Metrics
+from mbi.paths import PATHS
+from mbi.utils.cuda import set_cuda_memory
+from mbi.utils.helper import create_folder_if_not_exists
 
 
 class MainTrain(BaseTrain):
-    def __init__(self, model: BaseModel, data_loader: BaseDataLoader, iters: int = 10000):
+    def __init__(self, model: BaseModel, data_loader: BaseDataLoader, iters: int = 10_000):
         super().__init__(model, data_loader)
         self.iters = iters
 
@@ -53,7 +53,7 @@ class MainTrain(BaseTrain):
             loss = self.model.model.train_on_batch(x, y)
             losses.append(loss)
 
-            if i % 50 == 0 and i != 0:
+            if i % 5 == 0 and i != 0:
                 avg_losses.append(np.mean(losses[-100:]))
                 print(f"Average train loss in last 100 iterations: {avg_losses[-1]}")
 
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         description="Train Siamese Networks with triplet semi-hard loss"
     )
     parser.add_argument("image_size", help="The size of images (224 or 1024)")
-    parser.add_argument("iters", type=int, help="Number of iterations to train for")
+    parser.add_argument("--iters", type=int, default=10_000, help="Number of iterations to train for")
     args = parser.parse_args()
 
     try:

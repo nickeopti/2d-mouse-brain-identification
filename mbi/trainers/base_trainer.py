@@ -1,5 +1,5 @@
-from models.base_model import BaseModel
-from data_loader.base_data_loader import BaseDataLoader
+from mbi.models.base_model import BaseModel
+from mbi.data_loader.base_data_loader import BaseDataLoader
 
 
 class BaseTrain(object):

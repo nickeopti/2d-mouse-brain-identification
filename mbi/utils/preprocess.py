@@ -5,7 +5,7 @@ from tqdm import tqdm
 from skimage.exposure import equalize_hist, equalize_adapthist
 from PIL import Image
 
-from image import read_image, get_padded_image
+from mbi.utils.image import read_image, get_padded_image
 
 
 def preprocess(img):

@@ -1,4 +1,4 @@
-from utils.helper import create_folder_if_not_exists
+from mbi.utils.helper import create_folder_if_not_exists
 
 import tensorflow_addons as tfa
 import tensorflow as tf

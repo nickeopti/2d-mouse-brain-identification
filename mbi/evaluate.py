@@ -5,12 +5,12 @@ sys.path.insert(0, os.getcwd())
 
 import argparse
 
-from utils.metrics import Metrics
-from data_loader.base_data_loader import BaseDataLoader
-from data_loader.data_loader import TripletDataLoader
-from models.base_model import BaseModel
-from models.resnet50 import ResNet50V2Model
-from paths import PATHS
+from mbi.utils.metrics import Metrics
+from mbi.data_loader.base_data_loader import BaseDataLoader
+from mbi.data_loader.data_loader import TripletDataLoader
+from mbi.models.base_model import BaseModel
+from mbi.models.resnet50 import ResNet50V2Model
+from mbi.paths import PATHS
 
 
 def evaluate(

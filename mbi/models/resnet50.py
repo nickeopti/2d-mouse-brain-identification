@@ -1,4 +1,4 @@
-from models.base_model import BaseModel
+from mbi.models.base_model import BaseModel
 import tensorflow as tf
 from tensorflow.keras.layers import Lambda, Input, GlobalAveragePooling2D
 
