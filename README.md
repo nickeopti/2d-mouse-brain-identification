@@ -18,17 +18,18 @@ This repository contains code for the following paper [[arXiv]](https://arxiv.or
 
 ## Training
 
-`% python trainers/train.py --help `
+`% train --help `
 ```
-usage: train.py [-h] image_size
+usage: train [-h] [--iters ITERS] image_size
 
 Train Siamese Networks with triplet semi-hard loss
 
 positional arguments:
-  image_size  The size of images (224, 448 or 1024)
+  image_size     The size of images (224 or 1024)
 
-optional arguments:
-  -h, --help  show this help message and exit
+options:
+  -h, --help     show this help message and exit
+  --iters ITERS  Number of iterations to train for
 ```
 
 By default, the Siamese Networks use ResNet50v2 as a base network. Paths to the images are specified in `paths.py`
@@ -37,17 +38,17 @@ By default, the Siamese Networks use ResNet50v2 as a base network. Paths to the 
 
 ## Testing
 
-`% python evaluate.py --help `
+`% evaluate --help `
 ```
-usage: evaluate.py [-h] [-v] image_size weigths
+usage: evaluate [-h] [-v] image_size weights
 
 Evaluate trained ResNet50v2 on the test dataset
 
 positional arguments:
-  image_size       The size of images (256 or 1024)
-  weights          Path to the model weights
+  image_size       The size of images (224 or 1024)
+  weights          Path to model weights
 
-optional arguments:
+options:
   -h, --help       show this help message and exit
   -v, --visualize  Visualize predicted atlas plates
 ```

@@ -86,7 +86,7 @@ class MainTrain(BaseTrain):
                 f.close()
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="Train Siamese Networks with triplet semi-hard loss"
     )
@@ -110,3 +110,7 @@ if __name__ == "__main__":
     model = ResNet50V2Model(input_shape=input_shape, freeze=False, imagenet=True)
     trainer = MainTrain(model=model, data_loader=data_loader, iters=args.iters)
     trainer.train()
+
+
+if __name__ == "__main__":
+    main()

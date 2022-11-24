@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "2d-mouse-brain-identification"
+version = "1.0.0"
+requires-python = ">=3.8"
+dependencies = [
+    "tensorflow",
+    "tensorflow-addons",
+    "numpy",
+    "scikit-image",
+    "matplotlib",
+    "imgaug",
+    "Pillow",
+    "tqdm"
+]
+
+[tool.setuptools]
+packages = ["mbi"]
+
+[project.scripts]
+train = "mbi.trainers.train:main"
+evaluate = "mbi.evaluate:main"

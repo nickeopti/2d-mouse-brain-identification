@@ -6,6 +6,8 @@ __pycache__/
 .DS_Store
 .idea/
 
+*.egg-info/
+
 # Environments
 .env
 .venv

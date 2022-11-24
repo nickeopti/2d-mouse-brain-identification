@@ -26,7 +26,7 @@ def evaluate(
     return mae
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="Evaluate trained ResNet50v2 on the test dataset"
     )
@@ -53,3 +53,7 @@ if __name__ == "__main__":
         input_shape=input_shape, imagenet=False, weights_path=args.weights
     )
     evaluate(model, data_loader, weights=args.weights, visualize=args.visualize)
+
+
+if __name__ == "__main__":
+    main()
