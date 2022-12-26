@@ -22,17 +22,8 @@ def predict(model: BaseModel, data_loader: BaseDataLoader, image_path: str):
     return predictions
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Predict atlas plate for image"
-    )
-    parser.add_argument("image", help="The image to predict atlas plate for")
-    parser.add_argument("image_size", help="The size of images (224 or 1024)")
-    parser.add_argument("weights", help="Path to model weights")
-    args = parser.parse_args()
-
+def prepare(img_size: int, weights_path: str):
     try:
-        img_size = int(args.image_size)
         if img_size < 224:
             raise Exception("Image size should be bigger than 224")
     except ValueError:
@@ -41,8 +32,23 @@ def main():
     input_shape = (img_size, img_size, 3)
     data_loader = TripletDataLoader(input_shape=input_shape)
     model = ResNet50V2Model(
-        input_shape=input_shape, imagenet=False, weights_path=args.weights
+        input_shape=input_shape, imagenet=False, weights_path=weights_path
     )
+
+    return model, data_loader
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Predict atlas plate for image"
+    )
+    parser.add_argument("image", help="The image to predict atlas plate for")
+    parser.add_argument("image_size", type=int, help="The size of images (224 or 1024)")
+    parser.add_argument("weights", help="Path to model weights")
+    args = parser.parse_args()
+
+    model, data_loader = prepare(args.image_size, args.weights)
+
     predictions = predict(model, data_loader, args.image)
     print(predictions)
 
