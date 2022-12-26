@@ -17,8 +17,9 @@ dependencies = [
     "tqdm"
 ]
 
-[tool.setuptools]
-packages = ["mbi"]
+[tool.setuptools.packages.find]
+where = ["."]
+namespaces = false
 
 [project.scripts]
 train = "mbi.trainers.train:main"
